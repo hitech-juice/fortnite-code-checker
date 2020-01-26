@@ -32,6 +32,7 @@ var (
 	CkURL string
 )
 
+/*
 var (
 	line1  = "	  █████▒ ███▄    █  ▄████▄   ██░ ██ ▓█████  ▄████▄   ██ ▄█▀\n"
 	line2  = "	▓██   ▒  ██ ▀█   █ ▒██▀ ▀█  ▓██░ ██▒▓█   ▀ ▒██▀ ▀█   ██▄█▒\n"
@@ -45,14 +46,15 @@ var (
 	line10 = "	                   ░                       ░\n"
 	logo   = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line10
 )
-
-var logger = log.Logger{Name: "CHECKER", Format: "[{{type}}@{{name}}]: {{message}}", Level: "info", Print: true}
+*/
+var logger = log.Logger{Name: "Client", Format: "[{{name}}/{{type}}]: {{message}}", Level: "info", Print: true}
 
 func init() {
 	//logo
 	logger.Raw("\n\n")
 	logger.Raw(logo)
 	logger.Raw("				by zSnails ~~")
+	logger.Raw("I can only check 50 codes at once")
 	//end of logo
 	flag.StringVar(&TxtFile, "f", "codes.txt", "The file containing each code")
 	flag.StringVar(&FnCode, "c", "", "Check a single code")

@@ -3,13 +3,16 @@ package main
 import (
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"strings"
 	"time"
 )
 
 func checkCodes(codes []string) {
 	for i := 0; i < len(codes); i++ {
-		time.Sleep(time.Second)
+		time.Sleep(time.Second * 10)
+		codes[i] = url.QueryEscape(codes[i])
+		codes[i] = strings.Replace(codes[i], "%0D", "", -1)
 		checkCode(codes[i])
 	}
 }
@@ -28,6 +31,10 @@ func checkCode(code string) {
 		return
 	}
 	s := string(body)
-	s = strings.Replace(s, "<br>", "\n", 1)
-	logger.Info(s)
+	if s == "You are being rate limited!" {
+		//Later
+	} else {
+		s = strings.Replace(s, "<br>", "", -1)
+		logger.Info(s)
+	}
 }
